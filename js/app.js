@@ -50,7 +50,7 @@ $(function() {
           localStorage.setItem("token", data.user.token);
           localStorage.setItem("userID", data.user.id);
           // load closet page after user login succeeded.
-          window.location.href = '/closet.html';
+          window.location.href = '/plantrip.html';
         }
       };
       api.login(credentials, loginCallback);
