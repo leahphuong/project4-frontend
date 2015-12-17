@@ -1,9 +1,4 @@
-$(function() {
-  //take the form and read the input text with the name
-  //property, then form a data object {name: value}
-  // data = {email: xxx, password: xxx,
-  // password_confirmation: xxx}
-  var form2object = function(form) {
+var form2object = function(form) {
     var data = {};
     $(form).find("input").each(function(index, element) {
       var type = $(this).attr('type');
@@ -20,19 +15,26 @@ $(function() {
     wrapper[root] = formData;
     return wrapper;
   };
+
+$(function() {
+  //take the form and read the input text with the name
+  //property, then form a data object {name: value}
+  // data = {email: xxx, password: xxx,
+  // password_confirmation: xxx}
+
   $('#register-form').on('submit',function(e){
     e.preventDefault();
     var credentials = wrap("credentials", form2object(this));
     console.log(credentials);
-    var displayMsg = function(errors, data){
-      if(errors){
-        console.log(errors);
+    var registerCallback = function(error, data){
+      if(error){
+        console.log(error);
       } else {
         console.log('success');
         console.log(data);
       }
     };
-    api.register(credentials, displayMsg);
+    api.register(credentials, registerCallback);
 
   });
 
@@ -50,7 +52,7 @@ $(function() {
           localStorage.setItem("token", data.user.token);
           localStorage.setItem("userID", data.user.id);
           // load closet page after user login succeeded.
-          window.location.href = '/plantrip.html';
+          window.location.href = '/adddestination.html';
         }
       };
       api.login(credentials, loginCallback);
