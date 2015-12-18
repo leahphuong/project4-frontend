@@ -3,24 +3,23 @@
 <head>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,300italic" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Trips</title>
+<title>Contact</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="animate.css" rel="stylesheet" type="text/css">
+
 <link rel="stylesheet" href="js/woothemes-FlexSlider-06b12f8/flexslider.css" type="text/css" media="screen">
 <link rel="stylesheet" href="js/prettyPhoto_3.1.5/prettyPhoto.css" type="text/css" media="screen">
-<link rel="stylesheet" href="js/isotope/css/style.css" type="text/css" media="screen">
 <link href="style.css" rel="stylesheet" type="text/css">
-
+<link href="app.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" media="screen">
-<script type="text/javascript" src="js/modernizr.custom.48287.js"></script>
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
 <link rel="shortcut icon" href="favicon.png">
 </head>
-<body>
+<body class="collapsing_header">
 <header>
      <div class="container">
           <div class="navbar navbar-default" role="navigation">
@@ -28,59 +27,47 @@
                <div class="collapse navbar-collapse">
                     <ul class="nav pull-right navbar-nav">
                          <li><a href="index.html">Home</a></li>
-                         <li><a href="plantrip.html">Plan Your Trip</a></li>
-                         <li class="active"><a href="trip.html">Destinations</a></li>
-                         <li><a href="#">Log Out</a></li>
-                    </ul>
+                         <li class="active"><a href="plandestination.html">Plan Your Trip</a></li>
+                         <li><a href="displaydestination.html">Destinations</a></li>
+                         <li><a href="#">Log Out</a></li></ul>
                </div>
-          </div
+          </div>
      </div>
 </header>
-<div class="main">
-     <section class="hgroup">
-          <div class="container">
-               <h1>Trips</h1>
-               <h2></h2>
-               <ul class="breadcrumb pull-right">
-                    <li><a href="index.html">Home</a> </li>
-                    <li class="active">Trips</li>
-               </ul>
-          </div>
-     </section>
-     <section>
-          <div class="container">
-               <ul class="portfolio_filters">
-                    <li><a href="#" data-filter="*">show all</a></li>
-                    <li><a href="#" data-filter=".europe">Europe</a></li>
-                    <li><a href="#" data-filter=".middle_east">Middle East</a></li>
-                    <li><a href="#" data-filter=".asia">Asia</a></li>
-                    <li><a href="#" data-filter=".americas">Americas</a></li>
-               </ul>
-          </div>
-     </section>
-     <section class="portfolio_strict">
-          <div class="container">
-               <div id="tripRow" class="row isotope_portfolio_container"></div>
+<div class="full_page_photo">
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+  <div id="map"></div>
+</div>
+  <div id="create-destination-form">
+    <form id="create-destination">
+          <div class="row">
+               <div class="col-lg-4">
+                  <input id="start_date" name="start_date" placeholder="Start date" class="form-control" required="" type="text">
+                  <input id="end_date" name="end_date" placeholder="End date" class="form-control" required="" type="text">
+                  <input id="photo_url" name="photo_url" placeholder="Photo URL" class="form-control" required="" type="text">
+                  </div>
+              <div class="col-lg-4">
+                  <input id="trip_length" name="trip_length" placeholder="Trip length" class="form-control" required="">
+                  <input id="trip_description" name="description" placeholder="Trip description" class="form-control" required="" type="text">
+                  <input id="est_cost" name="est_cost" placeholder="Estimated cost" class="form-control" required="">
+
+              </div>
+              <div class="col-lg-4">
+                 <button id="destination-submit" type="submit" class="btn btn-primary btn-lg">Add Trip</button>
+               </div>
           </div>
 
-     </section>
-     <footer>
-          <section class="copyright">
-               <div class="container">
-                    <div class="row">
-                         <div class="col-sm-6 col-md-6"> Copyright ©2014 all rights reserved </div>
-                         <div class="text-right col-sm-6 col-md-6"> Designed by <a href="http://www.leonart.gr">LeonArt</a> </div>
-                    </div>
-               </div>
-          </section>
-     </footer>
+      </form>
+
+  </div>
 </div>
+
+</div>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.9.0.min.js"><\/script>')</script>
 <script src="js/app.js" type="text/javascript"></script>
 <script src="js/ajax.js" type="text/javascript"></script>
-<script src="js/loadtrip.js" type="text/javascript"></script>
-
 <script src="twitter-bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/modernizr.custom.48287.js"></script>
 <script src="js/woothemes-FlexSlider-06b12f8/jquery.flexslider-min.js"></script>
@@ -90,7 +77,19 @@
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
 <script type="text/javascript" src="js/snap.svg-min.js"></script>
-<script type="text/javascript" src="js/restart_theme.js"></script>
 <script type="text/javascript" src="js/collapser.js"></script>
+<!--
+You need to include this script on any page that has a Google Map BEFORE the restart_theme.js.
+When using Google Maps on your own site you MUST signup for your own API key at:
+https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+After your sign up replace the key in the URL below or paste in the new script tag that Google provides.
+-->
+<script src="js/createdestination.js" type="text/javascript"></script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn6Sf-iotPGh0jTm2DDNiaART77wk0gl0&&libraries=places&callback=initAutocomplete">
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="js/restart_theme.js"></script>
 </body>
 </html>

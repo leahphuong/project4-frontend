@@ -1,4 +1,8 @@
 
+var lng = null;
+var lat = null;
+var formatted_add = null;
+
 function initAutocomplete() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},
@@ -57,12 +61,34 @@ function initAutocomplete() {
           } else {
             bounds.extend(place.geometry.location);
           }
-          console.log(place);
-          console.log(place.address_components.formatted_address);
-          console.log(place.geometry.location.lat());
-          console.log(place.geometry.location.lng());
+          lng = place.geometry.location.lat();
+          lat = place.geometry.location.lng();
+          formatted_add = place.formatted_address;
 
         });
         map.fitBounds(bounds);
+
       });
-}
+  }
+$(function(){
+  $('#create-destination').on('submit', function(e){
+      e.preventDefault();
+      var formData = form2object(this);
+      console.log(formData);
+        formData["longitude"] = lng;
+        formData["latitude"] = lat;
+        formData["country"] = formatted_add;
+
+        console.log(formData);
+        destinationData = wrap("destination", formData);
+      console.log(destinationData);
+      var createDestinationCallback = function(error, data) {
+        if(error){
+          console.log(error);
+        } else {
+          window.location.href = '/displaydestination.html'
+        }
+      };
+      api.createDestination(localStorage.getItem("token"), destinationData, createDestinationCallback);
+    })
+})

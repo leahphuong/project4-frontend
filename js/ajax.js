@@ -46,5 +46,25 @@ var api = {
       },
       dataType: 'json'
     }, callback);
+  },
+  updateDestination: function(token, destinationID, destinationData, callback) {
+    this.ajax({
+      method: 'PATCH',
+      url: this.url + '/destinations/' + destinationID,
+      headers: {
+        'Authorization': 'Token token="' + token + '"'
+      },
+      data: JSON.stringify(destinationData),
+      dataType: 'json'
+    }, callback);
+  },
+  deleteDestination: function(token, destinationID, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.url + '/destinations/' + destinationID,
+      headers: {
+        'Authorization': 'Token token="' + token + '"'
+      }
+    },callback);
   }
 };

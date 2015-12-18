@@ -36,13 +36,13 @@
   position: inherit !important;
   height: 650px !important;
 }
-
 .navbar-default {
   margin: 0px 0px !important;
   margin-bottom: 0px !important;
 }
 .flexslider .item {
   height: 650px !important;
+  background-position: center top !important;
 }
 
 .main {
@@ -52,3 +52,11 @@
 .carousel-caption.show {
   bottom: 30px;
 }
+
+#create-destination-form {
+  top: 500px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
