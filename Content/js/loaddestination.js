@@ -16,7 +16,9 @@ function generateGrid(jsonData) {
       html += destination.trip_length;
       html += '</p><p><strong>Estimated cost: </strong>';
       html += destination.est_cost;
-      html += '</p></div><br><br><button class="btn btn-primary center-block btn-lg green-btn">Edit Trip</button> <button id="remove-destination" type="submit" class="btn btn-danger center-block btn-lg">Remove Trip</button></article></div></div></div></section>';
+      html += '</p></div><br><br><button class="btn btn-primary center-block btn-lg green-btn">Edit Trip</button> <button id="remove-destination" class="btn btn-danger center-block btn-lg" onclick="removeDestination(';
+      html += destination.id;
+      html += ')">Remove Trip</button></article></div></div></div></section>';
     }
   $('#display-destination').append(html);
 }
@@ -54,9 +56,10 @@ $(function(){
   };
   api.loadDestination(localStorage.getItem("token"), loadDestinationCallback);
 
-  $('#remove-destination').on('submit', function(e){
-    e.preventDefault();
-    var reloadPage = function(error, data) {
+});
+
+function removeDestination(destinationID){
+  var reloadPage = function(error, data) {
     if (error) {
       console.log(error);
     } else {
@@ -64,8 +67,6 @@ $(function(){
     }
   };
 
-  api.deleteDestination(localStorage.getItem("token"), localStorage.getItem("destinationID"), reloadPage);
+  api.deleteDestination(localStorage.getItem("token"), destinationID, reloadPage);
 
-  })
-
-});
+}
